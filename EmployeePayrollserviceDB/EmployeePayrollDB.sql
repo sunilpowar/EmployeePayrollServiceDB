@@ -1,11 +1,11 @@
 Welcome To The Employee PayRoll Service DataBase
 
-#UC 1  Create Payroll_Service Database
+--#UC 1  Create Payroll_Service Database--
 
 create database Payroll_Service;
 use PayRoll_Service;
 
-#UC 2  Create Table
+--#UC 2  Create Table--
 
 CREATE TABLE Employee_Payroll (
     Id int identity(1,1) primary key,
@@ -14,7 +14,7 @@ CREATE TABLE Employee_Payroll (
     StartDate date,
 ); 
 
-#UC 3   Insert Values in Table
+--#UC 3   Insert Values in Table--
 
 insert into employee_payroll (Name, Salary, StartDate) values
 ('Sunil', 25000.00, '2012-05-09'),
@@ -22,3 +22,7 @@ insert into employee_payroll (Name, Salary, StartDate) values
 ('Karan', 40000.00, '2010-07-05'),
 ('Prafull', 65000.00, '2008-12-25'),
 ('Rohan', 22000.00, '2016-01-31');
+
+--# UC 4  Retreive Records Using Select(UC4)--
+
+SELECT * FROM Employee_Payroll;
