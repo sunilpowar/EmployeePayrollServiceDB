@@ -1,4 +1,4 @@
-Welcome To The Employee PayRoll Service DataBase
+--Welcome To The Employee PayRoll Service DataBase--
 
 --#UC 1  Create Payroll_Service Database--
 
@@ -26,3 +26,10 @@ insert into employee_payroll (Name, Salary, StartDate) values
 --# UC 4  Retreive Records Using Select--
 
 SELECT * FROM Employee_Payroll;
+
+--#UC 5   Retrieve Salary data from particular Emplyoyee--
+
+SELECT Salary FROM Employee_Payroll WHERE NAME='Karan' 
+SELECT Salary,Name FROM Employee_Payroll WHERE Name LIKE 'K%';
+SELECT Salary,Name FROM Employee_Payroll WHERE StartDate between CAST('2010-07-05' as Date) and getdate(); 
+SELECT Salary,Name FROM Employee_Payroll WHERE Salary between 35000 and 45000; 
