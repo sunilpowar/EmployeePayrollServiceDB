@@ -64,3 +64,14 @@ UPDATE Employee_Payroll SET Department='Purchasing' where Id IN (1);
 UPDATE Employee_Payroll SET Department='Finance' where Id IN (3,4);
 UPDATE Employee_Payroll SET Department='Marketing' where Id IN (5);
 UPDATE Employee_Payroll SET Department='Software Developmernt' where Id IN (2,6);
+
+--UC 9  Extended The Table With BasicPay,Deductions,TaxablePay,IncomeTax,NetPay Columns
+
+EXEC SP_RENAME 'Employee_Payroll.Salary','BasicPay','COLUMN';
+ALTER TABLE Employee_Payroll ADD Deductions float,TaxablePay float,IncomeTax float,NetPay float;
+
+UPDATE Employee_Payroll SET Deductions=2000 WHERE Gender='F';
+UPDATE Employee_Payroll SET Deductions=2500 WHERE Gender='M';
+UPDATE Employee_Payroll SET NetPay=(BasicPay - Deductions)
+UPDATE Employee_Payroll SET TaxablePay=0,IncomeTax=0
+SELECT * FROM employee_payroll;
