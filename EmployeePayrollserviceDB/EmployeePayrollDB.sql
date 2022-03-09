@@ -40,3 +40,11 @@ SELECT Salary,Name FROM Employee_Payroll WHERE Salary between 35000 and 45000;
 Alter Table Employee_Payroll Add Gender	char(1);
 update Employee_Payroll set Gender='M' where Id IN (1,3,4,5);
 update Employee_Payroll set Gender='F' where Id IN (2,6);
+
+--UC7  Aggregate Functions and Group by Gender
+select SUM(Salary) as TotalSalary from Employee_Payroll;
+select SUM(Salary) as TotalSalary,Gender from Employee_Payroll group by Gender;
+select Max(Salary) as MaxEmployeeSalary from Employee_Payroll;
+select Max(Salary) as MaxSalary,Gender from Employee_Payroll group by Gender;
+select Min(Salary) as MinEmployeeSalary from Employee_Payroll;
+select Min(Salary) as MinSalary,Gender from Employee_Payroll group by Gender;
