@@ -23,6 +23,6 @@ insert into employee_payroll (Name, Salary, StartDate) values
 ('Prafull', 65000.00, '2008-12-25'),
 ('Rohan', 22000.00, '2016-01-31');
 
---# UC 4  Retreive Records Using Select(UC4)--
+--# UC 4  Retreive Records Using Select--
 
 SELECT * FROM Employee_Payroll;
