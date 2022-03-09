@@ -88,3 +88,79 @@ SELECT * FROM employee_payroll;
 INSERT INTO Employee_Payroll VALUES ('Terissa', 60000.00,'2018-01-03','F','Marketing', 9874646543, 2000, 0, 0, 58000, 'Pune'),
 ('Terissa', 50000.00,'2019-01-01','F','Sales', 9576164256, 2000, 0, 0, 48000, 'Kolhapur');
 SELECT * FROM Employee_Payroll;
+
+--# UC 11 Implement the ER Diagram into Payroll Service Database
+
+--Creating Table for Company--
+CREATE TABLE Company(
+	CompanyId INT IDENTITY(1,1) PRIMARY KEY,
+	CompanyName VARCHAR(100)
+	);
+
+--Creating Deptartment table
+CREATE TABLE Department(
+	DepartmentId INT IDENTITY(1,1) PRIMARY KEY,
+	DepartmentName VARCHAR(50)
+);
+
+--Creating Employee Table
+CREATE TABLE Employee(
+	EmployeeId INT IDENTITY(1,1) PRIMARY KEY,
+	CompanyId INT FOREIGN KEY REFERENCES Company(CompanyId),
+	EmployeeName VARCHAR(30),
+	PhoneNumber BIGINT,
+	EmployeeAddress VARCHAR(50),
+	StartDate DATE,
+	Gender CHAR(1)
+);
+
+--Creating Payroll Table
+CREATE TABLE Payroll(
+	EmployeeId INT FOREIGN KEY REFERENCES Employee(EmployeeId),
+	BasicPay FLOAT,
+	TaxablePay FLOAT,
+	IncomeTax FLOAT,
+	NetPay FLOAT,
+	Deductions FLOAT
+);
+
+--Creating Employee Department Table
+CREATE TABLE EmployeeDepartment(
+	EmployeeId int FOREIGN KEY REFERENCES Employee(EmployeeId),
+	DepartmentId int FOREIGN KEY REFERENCES Department(DepartmentId),
+);
+
+--Inserting Value Into Company Table
+INSERT INTO Company VALUES('TECH MAHINDRA'),('SLK'),('TCS');
+SELECT * FROM Company;
+
+--Inserting Value Into Department Table
+INSERT INTO Department VALUES('FINANCE'),('SALES'),('MARKETING'),('SOFTWARE DEVELPOER'),('HR');
+SELECT * FROM Department;
+
+--Inserting Value Into Employee Table
+INSERT INTO Employee VALUES
+(1,'Sunil',9564176218,'Kolhapur','2014-05-30','M'),
+(2,'Prafull',9614864723,'Satara','2018-01-23','M'),
+(1,'Sushama',6221489725,'Pune','2015-09-14','F'),
+(2,'Harish',9321478413,'Mumbai','2011-03-19','M'),
+(1,'Snehal',6247952454,'Belguam','2021-04-17','F'),
+(2,'Karan',9130309244,'Kagal','2021-11-27','M');
+
+--Inserting Value Into Payroll Table
+INSERT INTO Payroll(EmployeeId,BasicPay,IncomeTax,Deductions) Values (1,50000,2000,500),(2,50000,3000,800),(3,55000,5000,1000),(4,70000,5000,1500);
+UPDATE Payroll SET EmployeeId = 4 where BasicPay = 70000;
+
+--Updating TaxablePay Based On BasicPay - Deductions
+UPDATE Payroll SET TaxablePay = (BasicPay-Deductions);
+
+--Updating Netpay Based On Taxablepay-incometax
+UPDATE Payroll SET NetPay = (TaxablePay-IncomeTax);
+SELECT * FROM Payroll
+
+--Inserting Value Into Employee Department Table
+INSERT INTO EmployeeDepartment VALUES(1,2),(4,2),(2,3),(1,4);
+SELECT * FROM EmployeeDepartment;
+
+
+	
