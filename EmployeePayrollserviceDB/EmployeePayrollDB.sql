@@ -13,3 +13,12 @@ CREATE TABLE Employee_Payroll (
     Salary float,
     StartDate date,
 ); 
+
+#UC 3   Insert Values in Table
+
+insert into employee_payroll (Name, Salary, StartDate) values
+('Sunil', 25000.00, '2012-05-09'),
+('Sourabh', 35000.00, '2014-12-06'),
+('Karan', 40000.00, '2010-07-05'),
+('Prafull', 65000.00, '2008-12-25'),
+('Rohan', 22000.00, '2016-01-31');
