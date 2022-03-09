@@ -53,6 +53,8 @@ select Min(Salary) as MinSalary,Gender from Employee_Payroll group by Gender;
 
 ALTER TABLE Employee_Payroll ADD Department varchar(20) not null default 'Software Developer';
 ALTER TABLE Employee_Payroll ADD PhoneNumber bigint;
+ALTER TABLE Employee_Payroll ADD Address varchar(255) default 'NIL';
+
 UPDATE Employee_Payroll SET PhoneNumber=6514279584 where name='Sunil';
 UPDATE Employee_Payroll SET PhoneNumber=9465213478 where name='Sushama';
 UPDATE Employee_Payroll SET PhoneNumber=6145479856 where name='Karan';
@@ -63,7 +65,12 @@ UPDATE Employee_Payroll SET PhoneNumber=9784621478 where name='Snehal';
 UPDATE Employee_Payroll SET Department='Purchasing' where Id IN (1);
 UPDATE Employee_Payroll SET Department='Finance' where Id IN (3,4);
 UPDATE Employee_Payroll SET Department='Marketing' where Id IN (5);
-UPDATE Employee_Payroll SET Department='Software Developmernt' where Id IN (2,6);
+UPDATE Employee_Payroll SET Department='Software Developmernt' where Id IN (2);
+UPDATE Employee_Payroll SET Department='Sales' where Id IN (6);
+
+UPDATE Employee_Payroll SET Address='Kolhapur' WHERE Id IN (1,3);
+UPDATE Employee_Payroll SET Address='Pune' WHERE Id IN (6,4);
+UPDATE Employee_Payroll SET Address='Mumbai' WHERE Id IN (5,2);
 
 --UC 9  Extended The Table With BasicPay,Deductions,TaxablePay,IncomeTax,NetPay Columns
 
@@ -75,3 +82,9 @@ UPDATE Employee_Payroll SET Deductions=2500 WHERE Gender='M';
 UPDATE Employee_Payroll SET NetPay=(BasicPay - Deductions)
 UPDATE Employee_Payroll SET TaxablePay=0,IncomeTax=0
 SELECT * FROM employee_payroll;
+
+--UC 10  Terissa as part of Sales and Marketing Department
+
+INSERT INTO Employee_Payroll VALUES ('Terissa', 60000.00,'2018-01-03','F','Marketing', 9874646543, 2000, 0, 0, 58000, 'Pune'),
+('Terissa', 50000.00,'2019-01-01','F','Sales', 9576164256, 2000, 0, 0, 48000, 'Kolhapur');
+SELECT * FROM Employee_Payroll;
