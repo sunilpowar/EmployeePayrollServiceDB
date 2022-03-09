@@ -41,10 +41,26 @@ Alter Table Employee_Payroll Add Gender	char(1);
 update Employee_Payroll set Gender='M' where Id IN (1,3,4,5);
 update Employee_Payroll set Gender='F' where Id IN (2,6);
 
---UC7  Aggregate Functions and Group by Gender
+--UC 7  Aggregate Functions and Group by Gender
 select SUM(Salary) as TotalSalary from Employee_Payroll;
 select SUM(Salary) as TotalSalary,Gender from Employee_Payroll group by Gender;
 select Max(Salary) as MaxEmployeeSalary from Employee_Payroll;
 select Max(Salary) as MaxSalary,Gender from Employee_Payroll group by Gender;
 select Min(Salary) as MinEmployeeSalary from Employee_Payroll;
 select Min(Salary) as MinSalary,Gender from Employee_Payroll group by Gender;
+
+ --UC 8 Add column department,PhoneNumber and Address
+
+ALTER TABLE Employee_Payroll ADD Department varchar(20) not null default 'Software Developer';
+ALTER TABLE Employee_Payroll ADD PhoneNumber bigint;
+UPDATE Employee_Payroll SET PhoneNumber=6514279584 where name='Sunil';
+UPDATE Employee_Payroll SET PhoneNumber=9465213478 where name='Sushama';
+UPDATE Employee_Payroll SET PhoneNumber=6145479856 where name='Karan';
+UPDATE Employee_Payroll SET PhoneNumber=6148976457 where name='Prafull';
+UPDATE Employee_Payroll SET PhoneNumber=9871621542 where name='Rohan';
+UPDATE Employee_Payroll SET PhoneNumber=9784621478 where name='Snehal';
+
+UPDATE Employee_Payroll SET Department='Purchasing' where Id IN (1);
+UPDATE Employee_Payroll SET Department='Finance' where Id IN (3,4);
+UPDATE Employee_Payroll SET Department='Marketing' where Id IN (5);
+UPDATE Employee_Payroll SET Department='Software Developmernt' where Id IN (2,6);
